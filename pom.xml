@@ -112,11 +112,12 @@
         </dependency>
 
         <!-- Lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
+       <dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>1.18.22</version>
+		<optional>true</optional>
+	</dependency>
 
         <!-- Jackson for XML processing -->
         <dependency>
