@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # Service Spring Boot
+  java:
+    image: nejmaoui/back:backpfe
+    container_name: java
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8090:8090"  # Exposer le port 8082 du conteneur
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://root:root@mongodb:27017/agiledb?authSource=admin
+    depends_on:
+      - mongodb
+    networks:
+      - my-network
+
+  # Service MongoDB
+  mongodb:
+    image: mongo:4.4
+    container_name: mongodb
+    ports:
+      - "27017:27017"  # Expose MongoDB sur le port 27018
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - my-network
+
+  # Service Angular Frontend
+  angular-frontend:
+    image: nejmaoui/frontend:angular
+    container_name: angular-frontend
+    ports:
+      - "80:80"  # Exposer l'application Angular sur le port 80
+    networks:
+      - my-network
+    depends_on:
+      - java
+      - mongodb  # Angular dépend de Java et MongoDB pour fonctionner
+
+
+
+# Volumes
+volumes:
+  mongodb_data:
+
+# Réseaux
+networks:
+  my-network:
+    driver: bridge
