@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 -- Insertion d'un administrateur par défaut (en utilisant une valeur sécurisée pour le mot de passe)
 INSERT INTO `admin` (`username`, `motdepasse`, `email`, `role`, `permissions`) VALUES
-('admin', 'admin', 'admin@gmail.com', 'superadmin', '["ALL"]'); -- Exemple de permissions sous forme de chaîne JSON
+('admin', '$2a$10$zNT0H0YqKHMq7agPPvaeQ.iMcGqhTchqOp5pRZPl3WrHkYeHW5RQa', 'admin@gmail.com', 'superadmin', '["ALL"]'); -- Exemple de permissions sous forme de chaîne JSON
 
 -- Commit de la transaction (si nécessaire)
 COMMIT;
