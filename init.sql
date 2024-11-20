@@ -1,20 +1,17 @@
-
-
-
-CREATE TABLE IF NOT EXISTS `user` (
-    `id` INT NOT NULL AUTO_INCREMENT,
-    `datecreation` DATETIME NOT NULL,
-    `email` VARCHAR(255) NOT NULL UNIQUE,
-    `mdp` VARCHAR(255) NOT NULL,
-    `nom` VARCHAR(255) NOT NULL,
-    `prenom` VARCHAR(255) NOT NULL,
-    `statut` VARCHAR(50) NOT NULL,
-    `role_id` INT NOT NULL,
-    PRIMARY KEY (`id`)
+-- Création de la table Admin
+CREATE TABLE IF NOT EXISTS `admin` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT, -- Utilisation de BIGINT pour une valeur plus large si nécessaire
+    `username` VARCHAR(255) NOT NULL, -- Le nom d'utilisateur
+    `motdepasse` VARCHAR(255) NOT NULL, -- Le mot de passe (assurez-vous de stocker les mots de passe de manière sécurisée, comme en les hachant)
+    `email` VARCHAR(255) NOT NULL UNIQUE, -- Email de l'admin
+    `role` VARCHAR(100) NOT NULL, -- Le rôle de l'admin (par exemple "superadmin", "admin")
+    `permissions` VARCHAR(255) NOT NULL, -- Les permissions associées à l'admin (cela peut être un champ JSON ou une chaîne délimitée)
+    PRIMARY KEY (`id`) -- Définit la clé primaire
 );
 
-INSERT INTO `user` (`id`, `datecreation`, `email`, `mdp`, `nom`, `prenom`, `statut`, `role_id`) VALUES
-(1, NOW(), 'admin@gmail.com', '$2a$10$zNT0H0YqKHMq7agPPvaeQ.iMcGqhTchqOp5pRZPl3WrHkYeHW5RQa', 'Admin', 'Admin', 'Active', 1);
+-- Insertion d'un administrateur par défaut (en utilisant une valeur sécurisée pour le mot de passe)
+INSERT INTO `admin` (`username`, `motdepasse`, `email`, `role`, `permissions`) VALUES
+('admin', 'admin', 'admin@example.com', 'superadmin', '["ALL"]'); -- Exemple de permissions sous forme de chaîne JSON
 
+-- Commit de la transaction (si nécessaire)
 COMMIT;
-
