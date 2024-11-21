@@ -19,6 +19,7 @@
     <properties>
         <java.version>17</java.version> <!-- S'assurer que le projet utilise Java 17 -->
         <spring-boot.version>2.5.5</spring-boot.version>
+        <sonar.java.binaries>target/classes</sonar.java.binaries> <!-- Indiquer le chemin des fichiers compilés -->
     </properties>
 
     <dependencies>
