@@ -1,4 +1,3 @@
-
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -20,6 +19,7 @@
     <properties>
         <java.version>17</java.version> <!-- S'assurer que le projet utilise Java 17 -->
         <spring-boot.version>2.5.5</spring-boot.version>
+        <sonar.java.binaries>target/classes</sonar.java.binaries> <!-- Indiquer le répertoire des fichiers .class -->
     </properties>
 
     <dependencies>
@@ -201,27 +201,14 @@
                     </execution>
                 </executions>
             </plugin>
-        </plugins>
 
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.1.0</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>3.1.0</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.sonarsource.scanner.maven</groupId>
-                    <artifactId>sonar-maven-plugin</artifactId>
-                    <version>4.0.0.4121</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+            <!-- SonarQube Maven Plugin -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>4.0.0.4121</version>
+            </plugin>
+        </plugins>
     </build>
 
     <distributionManagement>
